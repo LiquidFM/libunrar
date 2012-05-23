@@ -103,6 +103,8 @@ HANDLE PASCAL RAROpenArchiveEx(struct RAROpenArchiveDataEx *r)
     if (Data != NULL)
       delete Data;
   }
+
+  return NULL;
 }
 
 
