@@ -40,10 +40,10 @@ elseif (CMAKE_COMPILER_IS_GNUCXX OR CMAKE_COMPILER_IS_GNUC)
     set (PROJECT_COMP_FLAGS "${PROJECT_COMP_FLAGS} -Werror=return-type -Werror=non-virtual-dtor")
     
 	# CXX Flags - turn on CODE GEN
-    set (PROJECT_COMP_FLAGS "${PROJECT_COMP_FLAGS} -fvisibility=hidden -fvisibility-inlines-hidden")
+    set (PROJECT_COMP_FLAGS "${PROJECT_COMP_FLAGS} -fPIC -fvisibility=hidden -fvisibility-inlines-hidden")
     
 	# CXX Flags - turn off CODE GEN
-    set (PROJECT_COMP_FLAGS "${PROJECT_COMP_FLAGS} -fno-exceptions -fno-check-new -fno-common -fno-threadsafe-statics")
+    set (PROJECT_COMP_FLAGS "${PROJECT_COMP_FLAGS} -fno-check-new -fno-common -fno-threadsafe-statics")
 
     #Useful link: "http://gcc.gnu.org/onlinedocs/gcc/Invoking-GCC.html"
 else () 

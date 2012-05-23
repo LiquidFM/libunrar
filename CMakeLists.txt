@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 2.8)
-project (libunrar)
+project (unrar)
 
 
 # Custom modules
@@ -29,6 +29,8 @@ endif ()
  
 # Definitions
 add_definitions (
+    -D_FILE_OFFSET_BITS=64
+    -D_LARGEFILE_SOURCE
     -DRARDLL
     -DUNRAR
     -DSILENT
@@ -44,8 +46,8 @@ endif ()
 add_subdirectory("src")
 
 
-# Target - libunrar
-add_library(libunrar SHARED ${libunrar_SOURCES})
+# Target - unrar
+add_library(unrar SHARED ${unrar_SOURCES})
 
 # Compiler flags
 if (USE_GPROF)
