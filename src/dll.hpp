@@ -1,6 +1,8 @@
 #ifndef _UNRAR_DLL_
 #define _UNRAR_DLL_
 
+#include "config.h"
+
 #pragma pack(1)
 
 #define ERAR_END_ARCHIVE        10
@@ -125,18 +127,18 @@ typedef int (PASCAL *PROCESSDATAPROC)(unsigned char *Addr,int Size);
 extern "C" {
 #endif
 
-HANDLE PASCAL RAROpenArchive(struct RAROpenArchiveData *ArchiveData);
-HANDLE PASCAL RAROpenArchiveEx(struct RAROpenArchiveDataEx *ArchiveData);
-int    PASCAL RARCloseArchive(HANDLE hArcData);
-int    PASCAL RARReadHeader(HANDLE hArcData,struct RARHeaderData *HeaderData);
-int    PASCAL RARReadHeaderEx(HANDLE hArcData,struct RARHeaderDataEx *HeaderData);
-int    PASCAL RARProcessFile(HANDLE hArcData,int Operation,char *DestPath,char *DestName);
-int    PASCAL RARProcessFileW(HANDLE hArcData,int Operation,wchar_t *DestPath,wchar_t *DestName);
-void   PASCAL RARSetCallback(HANDLE hArcData,UNRARCALLBACK Callback,LPARAM UserData);
-void   PASCAL RARSetChangeVolProc(HANDLE hArcData,CHANGEVOLPROC ChangeVolProc);
-void   PASCAL RARSetProcessDataProc(HANDLE hArcData,PROCESSDATAPROC ProcessDataProc);
-void   PASCAL RARSetPassword(HANDLE hArcData,char *Password);
-int    PASCAL RARGetDllVersion();
+LIB_EXPORT HANDLE PASCAL RAROpenArchive(struct RAROpenArchiveData *ArchiveData);
+LIB_EXPORT HANDLE PASCAL RAROpenArchiveEx(struct RAROpenArchiveDataEx *ArchiveData);
+LIB_EXPORT int    PASCAL RARCloseArchive(HANDLE hArcData);
+LIB_EXPORT int    PASCAL RARReadHeader(HANDLE hArcData,struct RARHeaderData *HeaderData);
+LIB_EXPORT int    PASCAL RARReadHeaderEx(HANDLE hArcData,struct RARHeaderDataEx *HeaderData);
+LIB_EXPORT int    PASCAL RARProcessFile(HANDLE hArcData,int Operation,char *DestPath,char *DestName);
+LIB_EXPORT int    PASCAL RARProcessFileW(HANDLE hArcData,int Operation,wchar_t *DestPath,wchar_t *DestName);
+LIB_EXPORT void   PASCAL RARSetCallback(HANDLE hArcData,UNRARCALLBACK Callback,LPARAM UserData);
+LIB_EXPORT void   PASCAL RARSetChangeVolProc(HANDLE hArcData,CHANGEVOLPROC ChangeVolProc);
+LIB_EXPORT void   PASCAL RARSetProcessDataProc(HANDLE hArcData,PROCESSDATAPROC ProcessDataProc);
+LIB_EXPORT void   PASCAL RARSetPassword(HANDLE hArcData,char *Password);
+LIB_EXPORT int    PASCAL RARGetDllVersion();
 
 #ifdef __cplusplus
 }
