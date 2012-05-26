@@ -1,6 +1,9 @@
 #ifndef _RAR_TIMEFN_
 #define _RAR_TIMEFN_
 
+#include "config.h"
+
+
 struct RarLocalTime
 {
   uint Year;
@@ -15,7 +18,7 @@ struct RarLocalTime
 };
 
 
-class RarTime
+class LIB_EXPORT RarTime
 {
   private:
     RarLocalTime rlt;
