@@ -4,6 +4,7 @@ project (unrar)
 
 # Custom modules
 set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/cmake")
+install (FILES ${CMAKE_SOURCE_DIR}/cmake/FindLibUnrar.cmake DESTINATION share/cmake/Modules)
 
 
 # Project header
