@@ -1,3 +1,9 @@
+# CMake tools
+include ("collect_files")
+
+collect_files (src_HEADERS "*.hpp" ${CMAKE_SOURCE_DIR})
+set (unrar_HEADERS ${src_HEADERS} PARENT_SCOPE)
+
 set (unrar_SOURCES ${unrar_SOURCES} 
     src/filestr.cpp
     src/scantree.cpp
