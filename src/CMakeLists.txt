@@ -1,6 +1,7 @@
 # CMake tools
 include ("collect_files")
 
+collect_files (src_HEADERS "*.h" ${CMAKE_SOURCE_DIR})
 collect_files (src_HEADERS "*.hpp" ${CMAKE_SOURCE_DIR})
 set (unrar_HEADERS ${src_HEADERS} PARENT_SCOPE)
 
