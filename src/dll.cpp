@@ -281,7 +281,7 @@ int PASCAL RARReadHeaderEx(HANDLE hArcData,struct RARHeaderDataEx *D)
 }
 
 
-int PASCAL ProcessFile(HANDLE hArcData,int Operation,char *DestPath,char *DestName,wchar *DestPathW,wchar *DestNameW)
+int PASCAL ProcessFile(HANDLE hArcData,int Operation,char *DestPath,char *DestName,wchar *DestPathW,wchar *DestNameW, bool TestMode)
 {
   DataSet *Data=(DataSet *)hArcData;
   try
@@ -344,7 +344,7 @@ int PASCAL ProcessFile(HANDLE hArcData,int Operation,char *DestPath,char *DestNa
         wcsncpyz(Data->Cmd.DllDestName,DestNameW,ASIZE(Data->Cmd.DllDestName));
 
       wcscpy(Data->Cmd.Command,Operation==RAR_EXTRACT ? L"X":L"T");
-      Data->Cmd.Test=Operation!=RAR_EXTRACT;
+      Data->Cmd.Test=(Operation!=RAR_EXTRACT) || TestMode;
       bool Repeat=false;
       Data->Extract.ExtractCurrentFile(Data->Arc,Data->HeaderSize,Repeat);
 
@@ -376,15 +376,15 @@ int PASCAL ProcessFile(HANDLE hArcData,int Operation,char *DestPath,char *DestNa
 }
 
 
-int PASCAL RARProcessFile(HANDLE hArcData,int Operation,char *DestPath,char *DestName)
+int PASCAL RARProcessFile(HANDLE hArcData,int Operation,char *DestPath,char *DestName, bool TestMode)
 {
-  return(ProcessFile(hArcData,Operation,DestPath,DestName,NULL,NULL));
+  return(ProcessFile(hArcData,Operation,DestPath,DestName,NULL,NULL,TestMode));
 }
 
 
-int PASCAL RARProcessFileW(HANDLE hArcData,int Operation,wchar *DestPath,wchar *DestName)
+int PASCAL RARProcessFileW(HANDLE hArcData,int Operation,wchar *DestPath,wchar *DestName, bool TestMode)
 {
-  return(ProcessFile(hArcData,Operation,NULL,NULL,DestPath,DestName));
+  return(ProcessFile(hArcData,Operation,NULL,NULL,DestPath,DestName,TestMode));
 }
 
 
