@@ -48,7 +48,7 @@ add_subdirectory("src")
 
 
 # Target - unrar
-add_library(unrar SHARED ${unrar_SOURCES})
+add_library(unrar STATIC ${unrar_SOURCES})
 
 
 # Install
