@@ -1,30 +1,10 @@
-cmake_minimum_required (VERSION 2.8)
 project (unrar)
 
-
-# Custom modules
-set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/cmake")
-install (FILES ${CMAKE_SOURCE_DIR}/cmake/FindLibUnrar.cmake DESTINATION share/cmake/Modules)
-
-
 # Project header
-include (project_cxx_header)
+project_cxx_header (YES YES YES YES YES NO NO NO)
 
-
-# Fix path delimeters
-if (WIN32)
-    file (TO_CMAKE_PATH ${CMAKE_INSTALL_PREFIX} CMAKE_INSTALL_PREFIX)
-endif ()
-
-
-# Includes
-
-
-# Link directories
-
-
-# Libs
-
+# 3rdparty
+list (APPEND ${PROJECT_NAME}_LIBS platform)
 
 # Definitions
 add_definitions (
@@ -36,26 +16,19 @@ add_definitions (
     -DSILENT
 )
 
-
-# We're require at least Windows 2000 (http://msdn.microsoft.com/en-us/library/Aa383745)
-if (WIN32)
-    add_definitions (-D_WIN32_WINNT=0x0500 -DWINVER=0x0500)
-endif ()
-
-
 # Sources
-add_subdirectory("src")
-
+add_subdirectory (src)
 
 # Target - unrar
-add_library(unrar STATIC ${unrar_SOURCES})
+add_library(unrar STATIC ${${PROJECT_NAME}_SOURCES})
+target_link_libraries (unrar ${${PROJECT_NAME}_LIBS})
 
+# Version
+build_version_file (unrar 5.0.1)
 
-# Install
-install (
-    TARGETS unrar
-    RUNTIME DESTINATION bin
-    LIBRARY DESTINATION lib
-    ARCHIVE DESTINATION lib
-)
-install (FILES ${unrar_HEADERS} DESTINATION include/libunrar)
+# Documentation
+add_documentation ("UnRAR" 5.0.1 "This package includes freeware Unrar C++ library (http://www.rarlab.com)")
+
+# Install rules
+install_header_files_with_prefix (unrar "libunrar" "src")
+install_target (unrar)
